@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}Athletes{% endblock %}
+{% block content %}
+
+{% include 'nav.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% include 'leftmenu.html' %}
+        <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+
+            <h1 class="h2">Athletes</h1>
+            {% if athletes %}
+            <a href="/add-athlete" class="btn btn-sm btn-primary">Add Athletes</a>
+            {% endif %}
+            <div class="row my-4">
+                <div class="col-12 col-xl-10 mb-6 mb-lg-0">
+                    <div class="card">
+                        <h5 class="card-header">List of Athletes</h5>
+                        <div class="card-body">
+                            {% if athletes %}
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Gender</th>
+                                            <th scope="col">Age</th>
+                                            <th scope="col">Weight</th>
+                                            <th scope="col">Training Plan</th>
+                                            <th scope="col">Can Enter Competitions</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for athlete in athletes %}
+                                        <th scope="row">{{ loop.index }}</th>
+                                        <td>{{ athlete.fullname }}</td>
+                                        <td>{{ athlete.gender }}</td>
+                                        <td>{{ athlete.age }}</td>
+                                        <td>{{ athlete.weight }}</td>
+                                        <td>{{ athlete.training_plan|capitalize }}</td>
+                                        <td>{% if athlete.can_attend_competitions %}Yes {% else %}No{% endif %}</td>
+                                        <td><a href="/view-athlete/{{ athlete.id }}" class="btn btn-sm btn-primary">View
+                                            </a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% else %}
+                            <p class="card-text text-center"><a href="/add-athlete" class="btn btn-sm btn-primary">Add
+                                    Athletes</a>
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+
+
+</div>
+
+{% endblock %}

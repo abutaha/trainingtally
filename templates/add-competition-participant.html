@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Add participants{% endblock %}
+{% block content %}
+
+{% include 'nav.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% include 'leftmenu.html' %}
+        <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+
+            <h1 class="h2">Add athlete to competition</h1>
+
+            <div class="row my-4">
+                <div class="col-12 col-xl-10 mb-6 mb-lg-0">
+                    <div class="card">
+                        <h5 class="card-header">Eligible participants</h5>
+                        <div class="card-body">
+                            {% if error %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                            {% else %}
+                            <form class="row g-3"
+                                action="/add-competition-participant/{{ competition_id }}/{{ weight_id }}"
+                                method="post">
+                                <input type="hidden" name="competition_id" value="{{ competition_id }}">
+                                <div class="col-md-6">
+                                    <select id="athlete_id" class="form-select" name="athlete_id">
+                                        {% for athlete in athletes %}
+                                        <option value="{{ athlete.id }}">{{ athlete.fullname|capitalize }} ({{
+                                            athlete.weight }} kg)</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-primary mb-3">Add athlete to
+                                        competition</button>
+                                </div>
+                            </form>
+                            {% endif %}
+                        </div> <!-- card-body -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+
+
+{% endblock %}

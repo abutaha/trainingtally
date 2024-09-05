@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}Athletes{% endblock %}
+{% block content %}
+
+{% include 'nav.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% include 'leftmenu.html' %}
+        <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+
+            <h1 class="h2">Add an athlete</h1>
+
+            <div class="row my-4">
+                <div class="col-12 col-xl-10 mb-6 mb-lg-0">
+                    <div class="card">
+                        <h5 class="card-header">Add athlete</h5>
+                        <div class="card-body">
+                            <div class="container">
+                                <form action="/add-athlete" method="post">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="fullname" class="form-label">Full name</label>
+                                            <input type="text" class="form-control" id="fullname" name="fullname"
+                                                required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="gender" class="form-label">Gender</label>
+                                            <select id="gender" class="form-select" name="gender" required>
+                                                <option selected>Male</option>
+                                                <option>Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="age" class="form-label">Age</label>
+                                            <input min="15" max="100" type="number" class="form-control" id="age"
+                                                name="age" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="weight" class="form-label">Weight (KG)</label>
+                                            <input type="number" class="form-control" id="weight" name="weight"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-12">
+                                            <label for="training_plan" class="form-label">Training Plan</label>
+                                            <select id="training_plan" class="form-select" name="training_plan">
+                                                {% for plan in training_plans %}
+                                                <option value="{{ plan.id }}">{{ plan.name|capitalize }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-auto">
+                                            <button type="submit" class="btn btn-primary">Create</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div> <!-- card-body -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+{% endblock %}

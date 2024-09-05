@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+{% include 'nav.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% include 'leftmenu.html' %}
+        <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+
+            <h1 class="h2">Dashboard</h1>
+
+            <div class="row my-4">
+                <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                    <div class="card text-center">
+                        <h5 class="card-header">Athletes</h5>
+                        <div class="card-body">
+                            <p class="card-text"><a href="/list-athletes">{{ data.athletes }}</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+                    <div class="card text-center">
+                        <h5 class="card-header">Competitions</h5>
+                        <div class="card-body">
+                            <p class="card-text"><a href="/list-competitions">{{ data.competitions }}</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+                    <div class="card text-center">
+                        <h5 class="card-header">Training Sessions</h5>
+                        <div class="card-body">
+                            <p class="card-text"><a href="/list-training-sessions">{{ data.training_sessions }}</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+                    <div class="card text-center">
+                        <h5 class="card-header">Private Coaching</h5>
+                        <div class="card-body">
+                            <p class="card-text"><a href="/list-private-coaching">{{ data.coaching_sessions }}</a></p>
+                        </div>
+                    </div>
+                </div>
+
+        </main>
+    </div>
+
+
+
+</div>
+
+{% endblock %}

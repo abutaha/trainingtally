@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if dbexist %}Database already exists!{% else %}Database Created{% endif %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        {% if dbexist %}
+        <div class="container-sm">
+            <h1>Database Already Exists</h1>
+            <div class="alert alert-danger" role="alert">
+                Database file already exists! If you need to recreate it, please contact your system administrator.
+            </div>
+        </div>
+
+        {% else %}
+        <div class="container-sm">
+            <h1>Database Created!</h1>
+            <div class="alert alert-success" role="alert">
+                You can now login using the default admin user (Username: <strong>admin</strong>, Password:
+                <strong>admin</strong>)
+            </div>
+            <a href="/login" class="btn btn-sm btn-primary">Login</a>
+        </div>
+
+        {% endif %}
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

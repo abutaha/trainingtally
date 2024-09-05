@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Training Sessions{% endblock %}
+{% block content %}
+
+{% include 'nav.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% include 'leftmenu.html' %}
+        <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+
+            <h1 class="h2">Training Sessions</h1>
+            {% if training_sessions %}
+            <a href="/log-training-session" class="btn btn-sm btn-primary">Register a training session</a>
+            {% endif %}
+            <div class="row my-4">
+                <div class="col-12 col-xl-10 mb-6 mb-lg-0">
+                    <div class="card">
+                        <h5 class="card-header">List of Training Sessions</h5>
+                        <div class="card-body">
+                            {% if training_sessions %}
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Athlete</th>
+                                            <th scope="col">Total number of sessions</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for session in training_sessions %}
+                                        <th scope="row">{{ loop.index }}</th>
+                                        <td>{{ session.fullname }}</td>
+                                        <td>{{ session.sessions }}</td>
+                                        <td><a href="/view-athlete/{{ session.id }}?tab=training-sessions"
+                                                class="btn btn-sm btn-primary">Details</a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% else %}
+                            <p class="card-text text-center"><a href="/log-training-session"
+                                    class="btn btn-sm btn-primary">Register a training session</a>
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+
+
+</div>
+
+{% endblock %}

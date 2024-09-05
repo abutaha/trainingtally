@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Competition Details{% endblock %}
+{% block content %}
+
+{% include 'nav.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% include 'leftmenu.html' %}
+        <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+            <h1 class="h2">{{ competition.name }}</h1>
+            <h5 class="h5">{{ competition.weight|capitalize }} - {{ competition.date }}</h5>
+            <a href="/add-competition-participant/{{ competition.id }}/{{ competition.weight_id }}"
+                class="btn btn-sm btn-primary">Add
+                participants</a>
+            <div class="row my-4">
+                <div class="col-12 col-xl-10 mb-6 mb-lg-0">
+                    <div class="card">
+                        <h5 class="card-header">Participants</h5>
+                        <div class="card-body">
+                            {% if participants %}
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Participant Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            {% for participant in participants %}
+                                            <th scope="row">{{ loop.index }}</th>
+                                            <td>{{ participant.fullname }} ({{ participant.weight }} kg)</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% else %}
+                            <p class="card-text text-center"><a
+                                    href="/add-competition-participant/{{ competition.id }}/{{ competition.weight_id }}"
+                                    class="btn btn-sm btn-primary">Add participants</a>
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div> <!-- col-12 col-xl-10 mb-6 mb-lg-0 -->
+            </div>
+
+        </main>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}Competitions{% endblock %}
+{% block content %}
+
+{% include 'nav.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% include 'leftmenu.html' %}
+        <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+
+            <h1 class="h2">Competitions</h1>
+            {% if competitions %}
+            <a href="/add-competition" class="btn btn-sm btn-primary">Add a competition</a>
+            {% endif %}
+            <div class="row my-4">
+                <div class="col-12 col-xl-10 mb-6 mb-lg-0">
+                    <div class="card">
+                        <h5 class="card-header">List of Competitions</h5>
+                        <div class="card-body">
+                            {% if competitions %}
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Competition Name</th>
+                                            <th scope="col">Weight Category</th>
+                                            <th scope="col">Entry fees</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">No. of Participants</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for comp in competitions %}
+                                        <tr>
+                                            <th scope="row">{{ loop.index }}</th>
+                                            <td>{{ comp.competition_name }}</td>
+                                            <td>{{ comp.weight_category|capitalize }}</td>
+                                            <td>AED {{ comp.entry_fee }}</td>
+                                            <td>{{ comp.date }}</td>
+                                            <td>{{ comp.participants_count }}</td>
+                                            <td><a href="/view-competition/{{ comp.id }}"
+                                                    class="btn btn-sm btn-primary">Details</a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% else %}
+                            <p class="card-text text-center"><a href="/add-competition"
+                                    class="btn btn-sm btn-primary">Add a competition</a>
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+
+
+</div>
+
+{% endblock %}

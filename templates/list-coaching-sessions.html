@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Private Coaching Sessions{% endblock %}
+{% block content %}
+
+{% include 'nav.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% include 'leftmenu.html' %}
+        <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+
+            <h1 class="h2">Private Coaching Sessions</h1>
+            {% if coaching_sessions %}
+            <a href="/log-coaching-session" class="btn btn-sm btn-primary">Log a coaching session</a>
+            {% endif %}
+            <div class="row my-4">
+                <div class="col-12 col-xl-10 mb-6 mb-lg-0">
+                    <div class="card">
+                        <h5 class="card-header">List of Private Coaching Sessions</h5>
+                        <div class="card-body">
+                            {% if coaching_sessions %}
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Athlete</th>
+                                            <th scope="col">Total number of sessions</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for sess in coaching_sessions %}
+                                        <th scope="row">{{ loop.index }}</th>
+                                        <td>{{ sess.fullname }}</td>
+                                        <td>{{ sess.sessions }}</td>
+                                        <td><a href="/view-athlete/{{ sess.id }}?tab=private-coaching"
+                                                class="btn btn-sm btn-primary">Details</a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% else %}
+                            <p class="card-text text-center"><a href="/log-coaching-session"
+                                    class="btn btn-sm btn-primary">Log a coaching session</a>
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}Create a competition{% endblock %}
+{% block content %}
+
+{% include 'nav.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% include 'leftmenu.html' %}
+        <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+
+            <h1 class="h2">Create a competition</h1>
+
+            <div class="row my-4">
+                <div class="col-12 col-xl-10 mb-6 mb-lg-0">
+                    <div class="card">
+                        <h5 class="card-header">Create a competition</h5>
+                        <div class="card-body">
+                            {% if error %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                            {% else %}
+                            <div class="container">
+                                <div class="alert alert-warning" role="alert">Competitions are held on the
+                                    <strong>second
+                                        Saturday</strong> of each month.
+                                </div>
+                                <form action="/add-competition" method="post">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="name" class="form-label">Competition Name</label>
+                                            <input type="text" class="form-control" id="name" name="name" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="weight_category" class="form-label">Weight Category</label>
+                                            <select id="weight_category" class="form-select" name="weight_category">
+                                                {% for category in weight_categories %}
+                                                <option value="{{ category.id }}">{{ category.name|capitalize }} ({{
+                                                    category.max_weight}} KG)</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-md-6">
+                                            <label for="name" class="form-label">Entry fees</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">AED</span>
+                                                <input type="text" class="form-control" id="entry_fee" name="entry_fee"
+                                                    value="220" required>
+                                                <span class="input-group-text">.00</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="date" class="form-label">Competition Date</label>
+                                            <input class="form-control" data-provide="date" id="date" name="date"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-auto">
+                                            <button type="submit" class="btn btn-primary">Create
+                                                competition</button>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                            {% endif %}
+                        </div> <!-- card-body -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script>
+    $('#date').datepicker({
+        format: 'yyyy-mm-dd',
+        daysOfWeekDisabled: "0,1,2,3,4,5",
+        daysOfWeekHighlighted: "6",
+        todayHighlight: true,
+        startDate: new Date(),
+    });
+
+</script>
+
+
+{% endblock %}
