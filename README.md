@@ -17,7 +17,7 @@ TrainingTally is a sample web application built using Python, Flask, and SQLAlch
 If you want to get started quickly on Windows, you can use the pre-built `.exe` file without installing Python or other dependencies:
 
 1. **Download the `.exe` file:**
-   - [Download Link Here]
+   - [Download Windows Executable version](https://github.com/abutaha/trainingtally/releases/download/v1-demo/trainingtally.exe)
 
 2. **Run the `.exe`:**
    - Double-click the `.exe` to start the application.
@@ -30,7 +30,6 @@ Ensure you have the following installed:
 - Python 3.8+
 - Pip
 - Virtualenv (optional but recommended)
-- Docker (if you plan to use Docker)
 - Flask 2.0+
 - SQLAlchemy
 
@@ -77,6 +76,7 @@ Ensure you have the following installed:
    ```
 
 7. **Initiate the database:**
+   
    Access `http://127.0.0.1:5000/create-database` to create the local database file and load initial data.
 
 ## Installation on Windows
@@ -105,7 +105,7 @@ Ensure you have the following installed:
 
 5. **Run the Application:**
    ```bash
-   python app.py
+   flask --app trainingtally.py --debug run
    ```
 
    The application will now be running on `http://127.0.0.1:5000/`.
@@ -116,6 +116,7 @@ Ensure you have the following installed:
    ```
 
 6. **Initiate the database:**
+   
    Access `http://127.0.0.1:5000/create-database` to create the local database file and load initial data.
 
 
